@@ -1,7 +1,7 @@
 # cpp-calculator
 ### Numeric Calculator in C++
 
-This program computes basic arithmetic using common operators: `+`, `-`, `*`, and `/`.
+This program computes basic arithmetic using common operators: `+`, `-`, `*`, and `/`. Now with functionality to next backets in curly braces `{ }`.
 
 Calculator obeys mathimatical principle that prioritises brackets, then multiplication and divison before addition and subtraction. For example, 2+8*4 = 34 != 40. This is governed by grammar rules that define expressions, terms, and primaries. The grammar is given by:
 
