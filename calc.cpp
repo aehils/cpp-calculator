@@ -48,14 +48,14 @@ Token Token_stream::get() {
 	case 'q':
 		throw std::runtime_error("quit");
 		break;
-	case '(': case ')': case '+': case '-': case '*': case '/': case '%':
+	case '(': case ')': case '+': case '-': case '*': case '/': case '%': case '{': case '}':
 		return Token(ch);
 		break;
 	case '.':
 	case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
 		std::cin.putback(ch);		//in these cases, a digit or decimal point is read to cin,
-		double val;			//so will be a floating point number. Ooh number; put back the firt char
-		std::cin >> val;			//first char of number back to cin, then read the entire floating point literal
+		double val;					//indicating a number is being read. Ooh number; put back the first char
+		std::cin >> val;			//now that first char of number back to cin, then read the entire floating point literal
 		return Token('8', val);
 		break;
 	default:
@@ -76,6 +76,16 @@ double primary() {
 			t = ts.get();
 			if (t.kind != ')'){
 				throw std::runtime_error("expected closing ')'");
+			}
+			return d;
+			break;
+		}
+	case '{':
+		{
+			double d = expression();
+			t = ts.get();
+			if (t.kind != '}'){
+				throw std::runtime_error("expected closing '}'");
 			}
 			return d;
 			break;
